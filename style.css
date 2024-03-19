@@ -61,22 +61,11 @@ button:hover {
   background-color: #45a049;
 }
 
-#preview-container button {
-  width: 30px;
-  font-size: 20px;
-}
 
 
 label {
   margin-top: 10px;
   display: block;
-}
-
-.preview-image {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #ddd;
-  margin-top: 20px;
 }
 
 #preview-container {
@@ -92,10 +81,16 @@ label {
   z-index: 1000;
 }
 
+#preview-container button {
+  width: 30px;
+  font-size: 20px;
+}
+
 .preview-image {
   max-width: 80%;
-  max-height: 80%;
+  height: auto;
   border: 1px solid #ddd;
+  margin-top: 20px;
 }
 
 #close-preview {
@@ -111,15 +106,15 @@ label {
 
 @media (max-width: 600px) {
   #app {
-      padding: 10px;
+    padding: 10px;
   }
 
   h1 {
-      font-size: 24px;
+    font-size: 24px;
   }
 
   h2 {
-      font-size: 20px;
+    font-size: 20px;
   }
 
   input[type="file"], select, input[type="range"] {
@@ -128,24 +123,26 @@ label {
   }
 
   button {
-      font-size: 16px;
-      padding: 12px 18px;
-  }
-
-  #drop-area {
-      padding: 15px;
+    font-size: 16px;
+    padding: 12px 18px;
   }
 
   #preview-container {
-      padding: 10px;
+    /* padding: 10px; */
   }
-
+  
+  #preview-container button {
+    width: 30px;
+    font-size: 20px;
+  }
+  
   .preview-image {
-      max-width: 100%;
-      height: auto;
+    max-width: 70%;
+    height: auto;
   }
 
   #close-preview {
-      font-size: 22px;
+    font-size: 20px;
+    color: white;
   }
 }
