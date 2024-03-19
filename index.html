@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Image Watermarking</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Image Watermarking</h1>
+
+        <div>
+            <h2>Select Images <span>(Multiple Allow)</span></h2>
+            <input type="file" id="image-files" multiple accept="image/jpeg, image/jpg, image/png"
+                  @change="onImageFilesChange($event)">
+        </div>
+
+        <div>
+            <h2>Choose Watermark Image</h2>
+            <input type="file" id="watermark-file" accept="image/png, image/jpg, image/jpeg"
+                  @change="onWatermarkFileChange($event)">
+        </div>
+
+        <div>
+            <h2>Watermark Position Options</h2>
+            <div>
+                <label for="position-x">X-axis</label>
+                <select id="position-x" v-model="watermarkPositionX">
+                    <option value="left">Left</option>
+                    <option value="center">Center</option>
+                    <option value="right">Right</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="position-y">Y-axis</label>
+                <select id="position-y" v-model="watermarkPositionY">
+                    <option value="top">Top</option>
+                    <option value="center">Center</option>
+                    <option value="bottom">Bottom</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="opacity">Transparency Slider</label>
+                <input type="range" id="opacity" min="0" max="100" v-model="watermarkOpacity">
+            </div>
+
+            <div>
+                <label for="scale">Scale Slider</label>
+                <input type="range" id="scale" min="0" max="100" v-model="watermarkScale">
+            </div>
+        </div>
+
+        <button id="apply-watermark" @click="applyWatermark">Apply Watermark</button>
+        <button id="preview-watermark" v-if="processedImages.length > 0" @click="showPreview">Preview</button>
+        <div id="preview-container" v-if="previewVisible">
+            <button @click="showPreviousImage">&#10094;</button>
+            <img :src="processedImage" class="preview-image">
+            <button @click="showNextImage">&#10095;</button>
+            <button id="close-preview" @click="hidePreview">&#10006;</button>
+        </div>
+        <button v-if="processedImages.length > 0" @click="downloadImagesAsZip">Download</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
